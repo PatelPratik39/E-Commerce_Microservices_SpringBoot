@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   postgres:
     container_name: microservice_pg_sql
@@ -5,8 +7,6 @@ services:
     environment:
       POSTGRES_USER: pratik
       POSTGRES_PASSWORD: pratik123
-      POSTGRES_DATA: /var/lib/postgresql/data
-
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
@@ -14,6 +14,7 @@ services:
     networks:
       - microservices-net
     restart: unless-stopped
+
   pgadmin:
     container_name: ms_pgadmin
     image: dpage/pgadmin4
@@ -22,7 +23,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
-      - 5050:80
+      - pgadmin:/var/lib/pgadmin
     ports:
       - 5050:80
     networks:
@@ -35,21 +36,25 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - mongo:/data
+      - mongo:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=prats
-      - MONGO_INITDB_ROOT_PASSWORD=prats
+      MONGO_INITDB_ROOT_USERNAME: prats
+      MONGO_INITDB_ROOT_PASSWORD: prats
+    networks:
+      - microservices-net
 
   mongo-express:
     container_name: ms_mongo_express
     image: mongo-express
-    restart: always
+    restart: unless-stopped
     ports:
       - 8081:8081
     environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=prats
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=prats
-      - ME_CONFIG_MONGODB_SERVER=mongodb
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin123
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    networks:
+      - microservices-net
 
   mail-dev:
     container_name: ms_mail_dev
@@ -57,13 +62,14 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
+    networks:
+      - microservices-net
 
 networks:
   microservices-net:
     driver: bridge
 
 volumes:
-    postgres:
-    pgadmin:
-    mongo:
-
+  postgres:
+  pgadmin:
+  mongo:
