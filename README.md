@@ -3,6 +3,6 @@
 
 ![Image1](path/to/image)
 
-[!image] (img1.png)
-[!image] (img2.png)
-[!image] (img3.png)
+[!image1] (img1.png)
+[!image2] (img2.png)
+[!image3] (img3.png)
