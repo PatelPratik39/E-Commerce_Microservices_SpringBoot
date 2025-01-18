@@ -7,6 +7,8 @@ services:
     environment:
       POSTGRES_USER: pratik
       POSTGRES_PASSWORD: pratik123
+      PGDATA: /var/lib/postgresql/data
+
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
@@ -35,26 +37,37 @@ services:
     image: mongo
     ports:
       - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=prats
+      - MONGO_INITDB_ROOT_PASSWORD=prats123
     volumes:
       - mongo:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: prats
-      MONGO_INITDB_ROOT_PASSWORD: prats
     networks:
       - microservices-net
+    healthcheck:
+      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   mongo-express:
     container_name: ms_mongo_express
     image: mongo-express
-    restart: unless-stopped
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: admin123
-      ME_CONFIG_MONGODB_SERVER: mongodb
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=prats
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=prats123
+      - ME_CONFIG_MONGODB_SERVER=ms_mongo_db
+      - ME_CONFIG_BASICAUTH_USERNAME=
+      - ME_CONFIG_BASICAUTH_PASSWORD=
+      - ME_CONFIG_OPTIONS_EDITABLE=true
+    depends_on:
+      - mongodb
     networks:
       - microservices-net
+    restart: unless-stopped
+
 
   mail-dev:
     container_name: ms_mail_dev
@@ -73,3 +86,8 @@ volumes:
   postgres:
   pgadmin:
   mongo:
+
+
+
+
+
