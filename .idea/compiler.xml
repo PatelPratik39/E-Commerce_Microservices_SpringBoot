@@ -9,6 +9,15 @@
         <module name="config-server" />
         <module name="discovery" />
       </profile>
+      <profile name="Annotation profile for customer" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="customer" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="dicvovery" target="21" />
@@ -17,6 +26,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config-server" options="-parameters" />
+      <module name="customer" options="-parameters" />
       <module name="dicvovery" options="-parameters" />
       <module name="discovery" options="-parameters" />
     </option>
