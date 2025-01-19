@@ -1,16 +1,15 @@
 package com.fullstck.customer.customer;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
+@Getter
+@Setter
 @Document
 public class Customer {
 
@@ -20,5 +19,4 @@ public class Customer {
     private String lastname;
     private String email;
     private Address address;
-
 }

@@ -1,11 +1,16 @@
 package com.fullstck.customer.exceptions;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
-public class CustomerNotFoundException extends  RuntimeException {
-    private final String msg;
+@Getter
+public class CustomerNotFoundException extends RuntimeException {
+    // Getter for the message
+    private String msg;
+
+    // Constructor with a custom message
+    public CustomerNotFoundException(String msg) {
+        super(msg); // Pass the message to the parent RuntimeException
+        this.msg = msg;
+    }
 
 }
