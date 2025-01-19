@@ -1,13 +1,12 @@
 package com.fullstck.product.product;
 
 import com.fullstck.product.category.Category;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductMapper {
 
-    public Product toProduct(ProductRequest request){
+    public Product toProduct(ProductRequest request) {
         return Product.builder()
                 .id(request.id())
                 .name(request.name())
@@ -15,11 +14,12 @@ public class ProductMapper {
                 .price(request.price())
                 .availableQuantity(request.availableQuantity())
                 .category(
-                        Category.builder().id(request.categoryId()).build()
+                        Category.builder()
+                                .id(request.categoryId())
+                                .build()
                 )
                 .build();
     }
-
 
     public ProductResponse toProductResponse(Product product) {
         return new ProductResponse(

@@ -8,7 +8,7 @@ public class ProductApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProductApplication.class, args);
-        System.out.println("Product service started Successfully !! ✅");
+        System.err.println("Product service started Successfully !! ✅");
     }
 
 }
