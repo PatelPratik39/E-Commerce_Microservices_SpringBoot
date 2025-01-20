@@ -1,6 +1,5 @@
-package com.fullstck.ecommerce.order.order;
+package com.fullstck.ecommerce.payments.payments;
 
-import com.fullstck.ecommerce.order.orderline.OrderLine;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+
 import static jakarta.persistence.EnumType.STRING;
 
 @AllArgsConstructor
@@ -21,24 +20,17 @@ import static jakarta.persistence.EnumType.STRING;
 @Builder
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "customer_order")
-public class Order {
+@Table(name = "payment")
+public class Payment {
 
     @Id
     @GeneratedValue
     private Integer id;
-
-    private String reference;
-
-    private BigDecimal totalAmount;
+    private BigDecimal amount;
 
     @Enumerated(STRING)
-    private PaymentMethod paymentMethod;
-
-    private String customerId;
-
-    @OneToMany(mappedBy = "order")
-    private List<OrderLine> orderLines;
+    private PaymentsMethod paymentsMethod;
+    private Integer orderId;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
