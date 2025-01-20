@@ -2,6 +2,8 @@ package com.fullstck.ecommerce.order.order;
 
 import com.fullstck.ecommerce.order.customer.CustomerClient;
 import com.fullstck.ecommerce.order.exception.BusinessException;
+import com.fullstck.ecommerce.order.kafka.OrderConfirmation;
+import com.fullstck.ecommerce.order.kafka.OrderProducer;
 import com.fullstck.ecommerce.order.orderline.OrderLineRequest;
 import com.fullstck.ecommerce.order.orderline.OrderLineService;
 import com.fullstck.ecommerce.order.product.ProductClient;
@@ -18,6 +20,7 @@ public class OrderService {
     private final OrderRepository repository;
     private final OrderMapper mapper;
     private final OrderLineService orderLineService;
+    private final OrderProducer orderProducer;
 
     public Integer createOrder(OrderRequest request) {
 
@@ -26,7 +29,7 @@ public class OrderService {
                 .orElseThrow(() -> new BusinessException("Can not create order :: No Customer exists with the provided ID : " + request.customerId()));
 
 //        second, purchase the products --> product microservice (RESTTemplate)
-        this.productClient.purchaseProducts(request.products());
+        var purchasedProducts = this.productClient.purchaseProducts(request.products());
 
 
 //        persist order
@@ -47,8 +50,16 @@ public class OrderService {
 //       todo  start payment process
 
 //        send the order confirmation --> notification microservice (Kafka)
-
-        return null;
+        orderProducer.sendOrderConfirmation(
+                new OrderConfirmation(
+                        request.reference(),
+                        request.amount(),
+                        request.paymentMethod(),
+                        customer,
+                        purchasedProducts
+                )
+        );
+        return order.getId();
     }
 
 }
