@@ -1,0 +1,54 @@
+package com.fullstck.ecommerce.order.order;
+
+import com.fullstck.ecommerce.order.customer.CustomerClient;
+import com.fullstck.ecommerce.order.exception.BusinessException;
+import com.fullstck.ecommerce.order.orderline.OrderLineRequest;
+import com.fullstck.ecommerce.order.orderline.OrderLineService;
+import com.fullstck.ecommerce.order.product.ProductClient;
+import com.fullstck.ecommerce.order.product.PurchaseRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class OrderService {
+
+    private final CustomerClient customerClient;
+    private final ProductClient productClient;
+    private final OrderRepository repository;
+    private final OrderMapper mapper;
+    private final OrderLineService orderLineService;
+
+    public Integer createOrder(OrderRequest request) {
+
+//        first, check the customer  --> OpenFeign
+        var customer = this.customerClient.findCustomerById(request.customerId())
+                .orElseThrow(() -> new BusinessException("Can not create order :: No Customer exists with the provided ID : " + request.customerId()));
+
+//        second, purchase the products --> product microservice (RESTTemplate)
+        this.productClient.purchaseProducts(request.products());
+
+
+//        persist order
+        var order = this.repository.save(mapper.toOrder(request));
+
+//        persist order lines
+        for(PurchaseRequest purchaseRequest : request.products()) {
+            orderLineService.saveOrderLine(
+                    new OrderLineRequest(
+                            null,
+                            order.getId(),
+                            purchaseRequest.productId(),
+                            purchaseRequest.quantity()
+                            )
+            );
+        }
+
+//       todo  start payment process
+
+//        send the order confirmation --> notification microservice (Kafka)
+
+        return null;
+    }
+
+}
