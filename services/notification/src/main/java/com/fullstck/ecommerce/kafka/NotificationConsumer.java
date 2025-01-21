@@ -36,7 +36,7 @@ public class NotificationConsumer {
                         .build()
         );
 
-//         todo send email
+//          send email
         var customerName = paymentConfirmation.customerFirstname() + " " + paymentConfirmation.customerLastname();
         emailService.sendPaymentSuccessEmail(
                 paymentConfirmation.customerEmail(),
@@ -59,7 +59,7 @@ public class NotificationConsumer {
                         .build()
         );
 
-//         todo send email
+//          send email
 
         var customerName = orderConfirmation.customer().firstname() + " " + orderConfirmation.customer().lastname();
         emailService.sendOrderConfirmationEmail(
