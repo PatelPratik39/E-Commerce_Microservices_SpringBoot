@@ -11,13 +11,14 @@
         <module name="discovery" />
         <module name="customer" />
       </profile>
-      <profile name="Annotation profile for payments" enabled="true">
+      <profile name="Annotation profile for notification" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
+        <module name="notification" />
         <module name="product" />
         <module name="payments" />
         <module name="order" />
@@ -33,6 +34,7 @@
       <module name="customer" options="-parameters" />
       <module name="dicvovery" options="-parameters" />
       <module name="discovery" options="-parameters" />
+      <module name="notification" options="-parameters" />
       <module name="order" options="-parameters" />
       <module name="payments" options="-parameters" />
       <module name="product" options="-parameters" />

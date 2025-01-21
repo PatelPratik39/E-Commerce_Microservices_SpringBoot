@@ -1,10 +1,8 @@
-package com.fullstck.ecommerce.payments.notification;
-
-import com.fullstck.ecommerce.payments.payments.PaymentMethod;
+package com.fullstck.ecommerce.kafka.payment;
 
 import java.math.BigDecimal;
 
-public record PaymentNotificationRequest(
+public record PaymentConfirmation(
 
         String orderReference,
         BigDecimal amount,
@@ -12,5 +10,6 @@ public record PaymentNotificationRequest(
         String customerFirstname,
         String customerLastname,
         String customerEmail
+
 ) {
 }
