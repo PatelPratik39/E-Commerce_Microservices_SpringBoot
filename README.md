@@ -53,8 +53,8 @@ The application is designed as a set of independent microservices that communica
 - **API Gateway**: Spring Cloud Gateway
 - **Configuration Management**: Spring Cloud Config Server
 - **Messaging**: Apache Kafka
-- **Tracing**: Zipkin, Sleuth
-- **Database**: PostgreSQL, H2 (for testing)
+- **Tracing**: Zipkin
+- **Database**: PostgreSQL, MongoDB- Mongo Express 
 - **Build Tool**: Maven
 - **Monitoring**: Spring Boot Actuator
 - **Java Version**: Java 21
@@ -84,7 +84,7 @@ The application is designed as a set of independent microservices that communica
 
 ### 5. **Notification Service**
 - Sends notifications for order updates.
-- **Port**: `8080`
+- **Port**: `8040`
 - **Messaging**: Kafka
 
 ### 6. **Gateway Service**
@@ -106,6 +106,7 @@ The application is designed as a set of independent microservices that communica
 - Java 21
 - Maven
 - Docker & Docker Compose
+- MongoDB
 - PostgreSQL installed locally or Dockerized
 
 ### Steps
