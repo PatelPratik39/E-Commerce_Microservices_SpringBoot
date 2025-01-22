@@ -1,10 +1,11 @@
-package com.fullstck.ecommerce_notification.kafka.order;
+package com.fullstck.ecommerce.kafka.order;
 
-import com.fullstck.ecommerce_notification.kafka.payment.PaymentMethod;
+import com.fullstck.ecommerce.kafka.payment.PaymentMethod;
 import java.math.BigDecimal;
 import java.util.List;
 
 public record OrderConfirmation(
+
         String orderReference,
         BigDecimal totalAmount,
         PaymentMethod paymentMethod,

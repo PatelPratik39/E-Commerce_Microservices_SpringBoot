@@ -1,4 +1,4 @@
-package com.fullstck.ecommerce_notification.kafka.payment;
+package com.fullstck.ecommerce.kafka.payment;
 
 public enum PaymentMethod {
     CREDIT_CARD,

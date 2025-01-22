@@ -1,6 +1,6 @@
-package com.fullstck.ecommerce_notification.email;
+package com.fullstck.ecommerce.email;
 
-import com.fullstck.ecommerce_notification.kafka.order.Product;
+import com.fullstck.ecommerce.kafka.order.Product;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.fullstck.ecommerce_notification.email.EmailTemplates.ORDER_CONFIRMATION;
-import static com.fullstck.ecommerce_notification.email.EmailTemplates.PAYMENT_CONFIRMATION;
+import static com.fullstck.ecommerce.email.EmailTemplates.ORDER_CONFIRMATION;
+import static com.fullstck.ecommerce.email.EmailTemplates.PAYMENT_CONFIRMATION;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Slf4j
@@ -30,7 +30,7 @@ public class EmailService {
     private final JavaMailSender mailSender;
     private  final SpringTemplateEngine templateEngine;
 
-//    send email for successfull Payment
+//    send email for successfully Payment
 
     @Async
     public void sendPaymentSuccessEmail(
@@ -65,7 +65,7 @@ public class EmailService {
 
             log.info(String.format("INFO - Email successfully sent to %s with template %s, ", destinationEmail, templateName));
         } catch (MessagingException e) {
-            log.warn("WARNING - Cannot send email to " + destinationEmail);
+            log.warn("WARNING - Cannot send email to {}" + destinationEmail);
         }
     }
 
@@ -104,7 +104,7 @@ public class EmailService {
 
             log.info(String.format("INFO - Email successfully sent to %s with template %s, ", destinationEmail, templateName));
         } catch (MessagingException e) {
-            log.warn("WARNING - Cannot send email to " + destinationEmail);
+            log.warn("WARNING - Cannot send email to {}" + destinationEmail);
 
         }
     }

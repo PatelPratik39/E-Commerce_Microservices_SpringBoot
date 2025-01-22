@@ -1,4 +1,4 @@
-package com.fullstck.ecommerce_notification.notification;
+package com.fullstck.ecommerce.notification;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

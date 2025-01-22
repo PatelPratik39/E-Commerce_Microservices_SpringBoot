@@ -1,10 +1,10 @@
-package com.fullstck.ecommerce_notification.kafka;
+package com.fullstck.ecommerce.kafka;
 
-import com.fullstck.ecommerce_notification.email.EmailService;
-import com.fullstck.ecommerce_notification.kafka.order.OrderConfirmation;
-import com.fullstck.ecommerce_notification.kafka.payment.PaymentConfirmation;
-import com.fullstck.ecommerce_notification.notification.Notification;
-import com.fullstck.ecommerce_notification.notification.NotificationRepository;
+import com.fullstck.ecommerce.email.EmailService;
+import com.fullstck.ecommerce.kafka.order.OrderConfirmation;
+import com.fullstck.ecommerce.kafka.payment.PaymentConfirmation;
+import com.fullstck.ecommerce.notification.Notification;
+import com.fullstck.ecommerce.notification.NotificationRepository;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-import static com.fullstck.ecommerce_notification.notification.NotificationType.ORDER_CONFIRMATION;
-import static com.fullstck.ecommerce_notification.notification.NotificationType.PAYMENT_CONFIRMATION;
+import static com.fullstck.ecommerce.notification.NotificationType.ORDER_CONFIRMATION;
+import static com.fullstck.ecommerce.notification.NotificationType.PAYMENT_CONFIRMATION;
 import static java.lang.String.format;
 
 @Service

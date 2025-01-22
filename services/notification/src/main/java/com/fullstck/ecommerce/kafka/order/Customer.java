@@ -1,4 +1,4 @@
-package com.fullstck.ecommerce_notification.kafka.order;
+package com.fullstck.ecommerce.kafka.order;
 
 public record Customer(
         String id,

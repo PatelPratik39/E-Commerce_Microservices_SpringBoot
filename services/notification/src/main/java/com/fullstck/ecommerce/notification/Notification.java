@@ -1,7 +1,7 @@
-package com.fullstck.ecommerce_notification.notification;
+package com.fullstck.ecommerce.notification;
 
-import com.fullstck.ecommerce_notification.kafka.order.OrderConfirmation;
-import com.fullstck.ecommerce_notification.kafka.payment.PaymentConfirmation;
+import com.fullstck.ecommerce.kafka.order.OrderConfirmation;
+import com.fullstck.ecommerce.kafka.payment.PaymentConfirmation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

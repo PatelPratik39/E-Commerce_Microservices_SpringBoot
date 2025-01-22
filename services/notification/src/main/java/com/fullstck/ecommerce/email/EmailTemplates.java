@@ -1,4 +1,4 @@
-package com.fullstck.ecommerce_notification.email;
+package com.fullstck.ecommerce.email;
 
 import lombok.Getter;
 
