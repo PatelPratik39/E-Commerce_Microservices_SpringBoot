@@ -16,11 +16,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: orderConfirmation:com.fullstck.ecommerce.kafka.OrderConfirmation,paymentConfirmation:com.fullstck.ecommerce.payments.notification.PaymentNotificationRequest;
-
-  application:
-    name: notification-service
-
+        spring.json.type.mapping: orderConfirmation:com.fullstck.ecommerce.kafka.OrderConfirmation,paymentConfirmation:com.fullstck.ecommerce.notification.PaymentNotificationRequest
   mail:
     host: localhost
     port: 1025
@@ -29,10 +25,12 @@ spring:
     properties:
       mail:
         smtp:
-          trust: "*"
+          trust: '*'
         auth: true
         starttls:
           enabled: true
         connectiontimeout: 5000
         timeout: 3000
         writetimeout: 5000
+  server:
+    port: 8040

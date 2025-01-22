@@ -12,7 +12,7 @@ public class OrderApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(OrderApplication.class, args);
-        System.out.println("Order Service up and Running Successfully ✅");
+        System.err.println("Order Service up and Running Successfully ✅");
     }
 
 }
