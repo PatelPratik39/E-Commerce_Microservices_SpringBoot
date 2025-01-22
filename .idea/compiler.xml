@@ -12,18 +12,17 @@
         <module name="gateway" />
         <module name="customer" />
       </profile>
-      <profile name="Annotation profile for notification" enabled="true">
+      <profile name="Annotation profile for order" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="notification" />
         <module name="product" />
-        <module name="payments" />
         <module name="order" />
+        <module name="payments" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
