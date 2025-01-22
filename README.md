@@ -5,6 +5,7 @@
 
 ![Image1](diagrams/img1.png)
 ![Image2](diagrams/img2.png)
+![Image2](diagrams/img3.png)
 
  # FeignClient : 
     - FeignClient is a declarative HTTP client in Spring Cloud that simplifies communication between microservices.

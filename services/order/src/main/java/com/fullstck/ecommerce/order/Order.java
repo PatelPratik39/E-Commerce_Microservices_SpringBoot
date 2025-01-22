@@ -25,7 +25,7 @@ import static jakarta.persistence.EnumType.STRING;
 public class Order {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String reference;
@@ -37,7 +37,7 @@ public class Order {
 
     private String customerId;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderLine> orderLines;
 
     @CreatedDate
